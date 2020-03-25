@@ -1208,7 +1208,7 @@ data_aishell/wav/dev/S0727/BAC009S0727W0261.wav	ti2 gong1 zhi4 neng2 jia4 shi3 h
 data_aishell/wav/dev/S0727/BAC009S0727W0262.wav	wu2 lun4 yong4 hu4 shi3 yong4 zi4 xing2 qi4 che1 hai2 shi4 huo3 che1	无论用户使用自行汽车还是火车
 data_aishell/wav/dev/S0727/BAC009S0727W0263.wav	dou1 neng2 xiang3 shou4 wu2 feng4 lian2 jie1 de chu1 xing2 ti3 jian3	都能享受无缝连接的出行体检
 data_aishell/wav/dev/S0727/BAC009S0727W0264.wav	huan1 ying2 guan1 zhu4 wo3 de zi4 mei2 ti3 zhi4 ming2 shuo1	欢迎关注我的自媒体志明说
-data_aishell/wav/dev/S0727/BAC009S0727W0266.wav	ye3 huan1 ying2 ti2 gong1 chuang4 ye4 gong1 si1 de zui4 xin1 dong4 tai4 o2 dao4	也欢迎提供创业公司的最新动态哦到
+data_aishell/wav/dev/S0727/BAC009S0727W0266.wav	ye3 huan1 ying2 ti2 gong1 chuang4 ye4 gong1 si1 de zui4 xin1 dong4 tai4 o dao4	也欢迎提供创业公司的最新动态哦到
 data_aishell/wav/dev/S0727/BAC009S0727W0267.wav	shi2 yi1 yue4 san1 ri4 xiao1 xi1 ju4 guo2 wai4 mei2 ti3 bao4 dao4	十一月三日消息据国外媒体报道
 data_aishell/wav/dev/S0727/BAC009S0727W0268.wav	li4 yong4 zhe4 zhong3 zhuang1 zhi4 ke3 yi3 po4 yi4 ren2 de si1 xiang3	利用这种装置可以破译人的思想
 data_aishell/wav/dev/S0727/BAC009S0727W0269.wav	ta1 men xi1 wang4 ke3 yi3 jiang1 gai1 she4 bei4 ying4 yong4 yu2 zhi4 neng2 she4 bei4 he2 yi1 liao2 yong4 tu2	他们希望可以将该设备应用于智能设备和医疗用途
@@ -7087,7 +7087,7 @@ data_aishell/wav/dev/S0743/BAC009S0743W0415.wav	yi1 lian3 su4 yan2 du1 zui3 mai4
 data_aishell/wav/dev/S0743/BAC009S0743W0416.wav	fei1 chang2 de ke3 ai4 piao4 liang4	非常的可爱漂亮
 data_aishell/wav/dev/S0743/BAC009S0743W0417.wav	wan2 quan2 bu4 xiang4 liang3 ge4 xiao3 gong1 zhu3 de ma1 mi1	完全不像两个小公主的妈咪
 data_aishell/wav/dev/S0743/BAC009S0743W0418.wav	xin4 xi1 shi2 bao4 xun4 ji4 zhe3 ji2 yuan4 yuan4 zhang1 jin4 shi4 wo3 de zui4 ai4	信息时报讯记者吉媛媛张晋是我的最爱
-data_aishell/wav/dev/S0743/BAC009S0743W0419.wav	ta1 zhen1 de hen3 shuai4 o2	他真的很帅哦
+data_aishell/wav/dev/S0743/BAC009S0743W0419.wav	ta1 zhen1 de hen3 shuai4 o	他真的很帅哦
 data_aishell/wav/dev/S0743/BAC009S0743W0420.wav	ta1 de da3 xi4 gan1 jing4 li4 luo4 kong4 zhi4 yi1 xia4	他的打戏干净利落控制一下
 data_aishell/wav/dev/S0743/BAC009S0743W0421.wav	wo3 shi4 you3 lao3 gong1 de ren2	我是有老公的人
 data_aishell/wav/dev/S0743/BAC009S0743W0422.wav	ta1 men dou1 mei2 wo3 lao3 gong1 shuai4 zhang1 jin4 shi4 zui4 shi4 he2 wo3 de nan2 ren2	他们都没我老公帅张晋是最适合我的男人

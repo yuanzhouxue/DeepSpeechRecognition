@@ -32,7 +32,8 @@ class Am():
             self.opt_init()
 
     def _model_init(self):
-        self.inputs = Input(name='the_inputs', shape=(None, 200, 1))
+        # self.inputs = Input(name='the_inputs', shape=(None, 200, 1))
+        self.inputs = Input(name='the_inputs', shape=(1600, 200, 1))
         self.h1 = cnn_cell(32, self.inputs)
         self.h2 = cnn_cell(64, self.h1)
         self.h3 = cnn_cell(128, self.h2)

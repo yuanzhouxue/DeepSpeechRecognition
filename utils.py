@@ -18,7 +18,7 @@ def data_hparams():
         aishell=False,
         prime=False,
         stcmd=False,
-        batch_size=16,
+        batch_size=4,
         data_length=None,
         shuffle=True)
     return params
@@ -70,14 +70,15 @@ class get_data():
             for line in tqdm(data):
                 wav_file, pny, han = line.split('\t')
                 self.wav_lst.append(wav_file)
-                self.pny_lst.append(pny.split(' '))
-                self.han_lst.append(han.strip('\n'))
+                self.pny_lst.append(pny.split())
+                self.han_lst.append(han.strip())
         if self.data_length:
             self.wav_lst = self.wav_lst[:self.data_length]
             self.pny_lst = self.pny_lst[:self.data_length]
             self.han_lst = self.han_lst[:self.data_length]
         print('make am vocab...')
         self.am_vocab = self.mk_am_vocab(self.pny_lst)
+        # self.am_vocab_old = self.mk_am_vocab_old(self.pny_lst)
         print('make lm pinyin vocab...')
         self.pny_vocab = self.mk_lm_pny_vocab(self.pny_lst)
         print('make lm hanzi vocab...')
@@ -135,7 +136,8 @@ class get_data():
 
     def wav_padding(self, wav_data_lst):
         wav_lens = [len(data) for data in wav_data_lst]
-        wav_max_len = max(wav_lens)
+        # wav_max_len = max(wav_lens)
+        wav_max_len = 1600
         wav_lens = np.array([leng // 8 for leng in wav_lens])
         new_wav_data_lst = np.zeros((len(wav_data_lst), wav_max_len, 200, 1))
         for i in range(len(wav_data_lst)):
@@ -144,35 +146,62 @@ class get_data():
 
     def label_padding(self, label_data_lst):
         label_lens = np.array([len(label) for label in label_data_lst])
-        max_label_len = max(label_lens)
+        # max_label_len = max(label_lens)
+        max_label_len = 64
         new_label_data_lst = np.zeros((len(label_data_lst), max_label_len))
         for i in range(len(label_data_lst)):
             new_label_data_lst[i][:len(label_data_lst[i])] = label_data_lst[i]
         return new_label_data_lst, label_lens
 
     def mk_am_vocab(self, data):
+        with open('data/dict.txt', 'r', encoding='utf8') as f:
+            txt_text = f.read()
+        pny_and_hans = txt_text.split()
+        vocab = pny_and_hans[::2]
+        vocab.append('_')
+        return vocab
+
+    def mk_am_vocab_old(self, data):
         vocab = []
         for line in tqdm(data):
             line = line
             for pny in line:
                 if pny not in vocab:
+                    if pny == '':
+                        print(line)
                     vocab.append(pny)
         vocab.append('_')
         return vocab
 
     def mk_lm_pny_vocab(self, data):
-        vocab = ['<PAD>']
-        for line in tqdm(data):
-            for pny in line:
-                if pny not in vocab:
-                    vocab.append(pny)
+        # vocab = ['<PAD>']
+        # for line in tqdm(data):
+        #     for pny in line:
+        #         if pny not in vocab:
+        #             vocab.append(pny)
+        # return vocab
+        with open('data/dict.txt', 'r', encoding='utf8') as f:
+            txt_text = f.read()
+        pny_and_hans = txt_text.split()
+        vocab = pny_and_hans[::2]
+        vocab.insert(0, '<PAD>')
         return vocab
 
     def mk_lm_han_vocab(self, data):
+        # vocab = ['<PAD>']
+        # for line in tqdm(data):
+        #     line = ''.join(line.split(' '))
+        #     for han in line:
+        #         if han not in vocab:
+        #             vocab.append(han)
+        # return vocab
         vocab = ['<PAD>']
-        for line in tqdm(data):
-            line = ''.join(line.split(' '))
-            for han in line:
+        with open('data/dict.txt', 'r', encoding='utf8') as f:
+            txt_text = f.read()
+        pny_and_hans = txt_text.split()
+        hans_list = pny_and_hans[1::2]
+        for hans in hans_list:
+            for han in hans:
                 if han not in vocab:
                     vocab.append(han)
         return vocab
@@ -243,3 +272,16 @@ def decode_ctc(num_result, num2word):
 	for i in r1:
 		text.append(num2word[i])
 	return r1, text
+
+
+if __name__ == '__main__':
+    args = data_hparams()
+    args.data_type = 'train'
+    args.aishell = True
+    args.thchs30 = False
+    args.prime = False
+    args.stcmd = True
+    dataloader = get_data(args)
+    print(len(dataloader.am_vocab))
+    # print(dataloader.am_vocab, dataloader.am_vocab_old)
+    # print([pny for pny in dataloader.am_vocab_old if pny not in dataloader.am_vocab])
