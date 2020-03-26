@@ -83,6 +83,7 @@ class get_data():
         self.pny_vocab = self.mk_lm_pny_vocab(self.pny_lst)
         print('make lm hanzi vocab...')
         self.han_vocab = self.mk_lm_han_vocab(self.han_lst)
+        self.han_vocab_old = self.mk_lm_han_vocab_old(self.han_lst)
 
     def get_am_batch(self):
         shuffle_list = [i for i in range(len(self.wav_lst))]
@@ -188,13 +189,6 @@ class get_data():
         return vocab
 
     def mk_lm_han_vocab(self, data):
-        # vocab = ['<PAD>']
-        # for line in tqdm(data):
-        #     line = ''.join(line.split(' '))
-        #     for han in line:
-        #         if han not in vocab:
-        #             vocab.append(han)
-        # return vocab
         vocab = ['<PAD>']
         with open('data/dict.txt', 'r', encoding='utf8') as f:
             txt_text = f.read()
@@ -202,6 +196,15 @@ class get_data():
         hans_list = pny_and_hans[1::2]
         for hans in hans_list:
             for han in hans:
+                if han not in vocab:
+                    vocab.append(han)
+        return vocab
+
+    def mk_lm_han_vocab_old(self, data):
+        vocab = ['<PAD>']
+        for line in tqdm(data):
+            line = ''.join(line.split(' '))
+            for han in line:
                 if han not in vocab:
                     vocab.append(han)
         return vocab
@@ -277,11 +280,11 @@ def decode_ctc(num_result, num2word):
 if __name__ == '__main__':
     args = data_hparams()
     args.data_type = 'train'
-    args.aishell = True
-    args.thchs30 = False
+    args.aishell = False
+    args.thchs30 = True
     args.prime = False
     args.stcmd = True
     dataloader = get_data(args)
-    print(len(dataloader.am_vocab))
+    # print(len(dataloader.am_vocab))
     # print(dataloader.am_vocab, dataloader.am_vocab_old)
-    # print([pny for pny in dataloader.am_vocab_old if pny not in dataloader.am_vocab])
+    print([pny for pny in dataloader.han_vocab_old if pny not in dataloader.han_vocab])
