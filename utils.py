@@ -83,7 +83,7 @@ class get_data():
         self.pny_vocab = self.mk_lm_pny_vocab(self.pny_lst)
         print('make lm hanzi vocab...')
         self.han_vocab = self.mk_lm_han_vocab(self.han_lst)
-        self.han_vocab_old = self.mk_lm_han_vocab_old(self.han_lst)
+        # self.han_vocab_old = self.mk_lm_han_vocab_old(self.han_lst)
 
     def get_am_batch(self):
         shuffle_list = [i for i in range(len(self.wav_lst))]
@@ -203,7 +203,7 @@ class get_data():
     def mk_lm_han_vocab_old(self, data):
         vocab = ['<PAD>']
         for line in tqdm(data):
-            line = ''.join(line.split(' '))
+            line = ''.join(line.split())
             for han in line:
                 if han not in vocab:
                     vocab.append(han)
@@ -286,5 +286,6 @@ if __name__ == '__main__':
     args.stcmd = True
     dataloader = get_data(args)
     # print(len(dataloader.am_vocab))
-    # print(dataloader.am_vocab, dataloader.am_vocab_old)
-    print([pny for pny in dataloader.han_vocab_old if pny not in dataloader.han_vocab])
+    # print(dataloader.han_vocab)
+    # print(dataloader.han_vocab_old)
+    # print([pny for pny in dataloader.han_vocab_old if pny not in dataloader.han_vocab])
