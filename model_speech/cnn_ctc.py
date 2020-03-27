@@ -42,7 +42,7 @@ class Am():
         # 200 / 8 * 128 = 3200
         self.h6 = Reshape((-1, 3200))(self.h5)
         self.h6 = Dropout(0.2)(self.h6)
-        self.h7 = dense(256)(self.h6)
+        self.h7 = dense(512)(self.h6)
         self.h7 = Dropout(0.2)(self.h7)
         self.outputs = dense(self.vocab_size, activation='softmax')(self.h7)
         self.model = Model(inputs=self.inputs, outputs=self.outputs)

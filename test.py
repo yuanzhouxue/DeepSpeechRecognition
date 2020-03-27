@@ -15,6 +15,8 @@ train_data = get_data(data_args)
 # 1.声学模型-----------------------------------
 from model_speech.cnn_ctc import Am, am_hparams
 
+model_path = 'logs_am/model.h5'
+
 am_args = am_hparams()
 am_args.vocab_size = len(train_data.am_vocab)
 am = Am(am_args)
@@ -40,7 +42,7 @@ with sess.as_default():
 # 3. 准备测试所需数据， 不必和训练数据一致，通过设置data_args.data_type测试，
 #    此处应设为'test'，我用了'train'因为演示模型较小，如果使用'test'看不出效果，
 #    且会出现未出现的词。
-data_args.data_type = 'train'
+data_args.data_type = 'test'
 data_args.shuffle = False
 data_args.batch_size = 1
 test_data = get_data(data_args)

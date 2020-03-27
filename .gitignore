@@ -2,3 +2,8 @@
 *.pyc
 *.mdl
 *.wav
+*.trn
+data/data_thchs30/**
+data/ST-CMDS-20170001_1-OS/**
+*.h5
+*.hdf5
